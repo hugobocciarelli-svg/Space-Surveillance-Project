@@ -8,7 +8,7 @@ function [x_updated,P_updated] = KalmanFilter(x_pred,P_pred,Z,H,V)
 % +Vk)
 
 % Correction du ain de Kalman
-K = P_pred * H'* inv(H * P_pred * H' - V);
+K = P_pred * H'* inv(H * P_pred * H' + V);
 
 % Mise à jour
 x_updated = x_pred + K * (Z-H*x_pred);
