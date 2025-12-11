@@ -26,7 +26,7 @@ function [Target_data] = Extract_data(n)
     fprintf('Période: %s à %s\n', datestr(datetime_vals(1)), datestr(datetime_vals(end)));
     fprintf('Plage azimuth: [%.2f, %.2f] deg\n', min(azimuth), max(azimuth));
     fprintf('Plage élévation: [%.2f, %.2f] deg\n', min(elevation), max(elevation));
-    fprintf('Plage distance: [%.2f, %.2f] m\n', min(distance), max(distance));
+    fprintf('Plage distance: [%.2f, %.2f] km\n', min(distance), max(distance));
     
     % Extraction des données pour la cible n
     idx = target_id == n;

@@ -2,7 +2,7 @@ function trace_orbite(Etats)
 
     x = Etats(1, :);
     y = Etats(2, :);
-    z = Etats(3, :);
+    z= Etats(3, :);
     R_T = 6378; % km
 
     % Création de la sphère Terre

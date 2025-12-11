@@ -11,15 +11,15 @@ idx_meas=1 ; %index de la mesure actuelle
 Pos = [meas.x_true'; meas.y_true'; meas.z_true']; %vecteur des données réelles dans ECEF
 %% 2. PARAMÈTRES DE SIMULATION
 t0 = meas.time(1);                  % Temps initial [s]
-dt = 1.6;                           % Pas de temps [s](Synchro sur le dt mesure pour des questions de simplicités)
-t_sim = 3600*6;                      % Temps de simulation [s] 
+dt = 1.6/2;                           % Pas de temps [s](Synchro sur le dt mesure pour des questions de simplicités)
+t_sim = 3600*12;                      % Temps de simulation [s] 
 t_end = t0 + t_sim;                 % Temps  final [s] 
 TimeT = t0:dt:t_end;                % Vecteur temps
 n_steps = length(TimeT);            % Nombre de pas
 
 %% 3. CONDITIONS INITIALES
 % État initial: [x, y, z, vx, vy, vz] en km et km/s
-X0_real = [4000; 0; 0; 0; 7.5; 0];                  % Supposons que nous connaissons l'etat initial
+X0_real = [-4.287964709629751e+02; -4.788795050327217e+03; 5.344726876143979e+03; 0; 7.5; 0];                  % etat initial
 X0_est = X0_real + [10; 5; -5; 0.1; -0.1; 0.05];    % Estimation initiale (avec erreur)
 n_meas = size(Z_eci, 2);%Nombre de mesures prises en compte   
 %% 4. PARAMÈTRES DU FILTRE DE KALMAN
@@ -94,6 +94,8 @@ for i = 1:n_steps-1
 end
 delta = predicted_states-Corrected_states;
 
-
 %% 7. Affichage
+
 PlotTrajectoryComparison(TimeT, Corrected_states, Pos,Z_eci, meas.time, meas.datetime);
+
+VisualizeOrbitAerospace(Corrected_states,TimeT,meas,t_sim)
