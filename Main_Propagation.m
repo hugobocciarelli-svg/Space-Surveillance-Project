@@ -35,8 +35,8 @@ P_est = diag([100, 100, 100, 0.1, 0.1, 0.1]);
 W = diag([0.001, 0.001, 0.001, 0.00001, 0.00001, 0.00001]);
 
 % Bruit de mesure (incertitude des capteurs)
-%V = diag([0.1, 0.1, 0.1]); % Variance de 25 km² sur chaque position
 V = diag([0, 0, 0]);
+
 %% 5. INITIALISATION DES VARIABLES DE STOCKAGE
 % Pour les vecteurs corrigés (+ initial)
 Corrected_states = zeros(6, n_steps);
@@ -83,7 +83,7 @@ for i = 1:n_steps-1
         % Stocker les résultats corrigés
         Corrected_states(:, i+1) = X;
         P_history{i+1} = P;
-        
+       
         % Passer à la mesure suivante
         idx_meas = idx_meas + 1;
         
@@ -99,4 +99,5 @@ delta = predicted_states-Corrected_states;
 PlotTrajectoryComparison(TimeT, Corrected_states, Pos,Z_eci, meas.time, meas.datetime);
 
 VisualizeOrbitAerospace(Corrected_states,TimeT,meas,t_sim)
+
 

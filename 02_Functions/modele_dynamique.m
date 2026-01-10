@@ -4,6 +4,7 @@ function dot_etat = modele_dynamique(t,etat)
     r_vec = etat(1:3); % Vecteur position [x; y; z]
     v_vec = etat(4:6); % Vecteur vitesse [vx; vy; vz]
     r = norm(r_vec);
+    
     a_gravite = -(mu / r^3) * r_vec;
    
     dot_etat = [

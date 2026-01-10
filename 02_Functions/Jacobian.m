@@ -2,7 +2,7 @@
 function J = Jacobian(state)
 mu = 398600.4418;  
 J2 = 0.0010836; 
-Re = 6371000;
+Re = 6371;
 
 
 
